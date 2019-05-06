@@ -118,6 +118,8 @@ uid_t uid = NOUID;
 gid_t gid = NOGID;
 gid_t *groups;
 int ngroups;
+char *logname;
+char *home;
 
 /* obtain supplementary group list for username */
 void rws_getsupp(char *username, gid_t gid)
@@ -177,6 +179,8 @@ void rws_getuid(char *user)
     }
     pw = getpwnam(user);
     if(pw != NULL) {
+        logname = pw->pw_name;
+        home = pw->pw_dir;
         uid = pw->pw_uid;
         if(gid == NOGID)
             gid = pw->pw_gid;
@@ -262,6 +266,14 @@ int main(int argc, char **argv)
     for(__auto_type i = 0; i < ncaps; i++)
         if(prctl(PR_CAP_AMBIENT, PR_CAP_AMBIENT_RAISE, caps[i], 0, 0) < 0)
             err(1, "PR_CAP_AMBIENT");
+
+    if(logname != NULL) {
+        setenv("USER", logname, 1);
+        setenv("LOGNAME", logname, 1);
+    }
+    if(home != NULL) {
+        setenv("HOME", home, 1);
+    }
 
     execvp(argv[optind], &argv[optind]);
     return -1;
