@@ -12,39 +12,40 @@ const struct rws_cap rws_caps[] = {
     {
         CAP_DAC_OVERRIDE,
         "CAP_DAC_OVERRIDE",
-        "Override all DAC access, including ACL execute access if [_POSIX_ACL]\n"
-        "is defined. Excluding DAC access covered by CAP_LINUX_IMMUTABLE.\n"
+        "Override all DAC access, including ACL execute access if\n"
+        "[_POSIX_ACL] is defined. Excluding DAC access covered by\n"
+        "CAP_LINUX_IMMUTABLE.\n"
     },
     {
         CAP_DAC_READ_SEARCH,
         "CAP_DAC_READ_SEARCH",
-        "Overrides all DAC restrictions regarding read and search on files and\n"
-        "directories, including ACL restrictions if [_POSIX_ACL] is defined.\n"
-        "Excluding DAC access covered by CAP_LINUX_IMMUTABLE.\n"
+        "Overrides all DAC restrictions regarding read and search on files\n"
+        "and directories, including ACL restrictions if [_POSIX_ACL] is\n"
+        "defined. Excluding DAC access covered by CAP_LINUX_IMMUTABLE.\n"
     },
     {
         CAP_FOWNER,
         "CAP_FOWNER",
         "Overrides all restrictions about allowed operations on files, where\n"
-        "file owner ID must be equal to the user ID, except where CAP_FSETID is\n"
-        "applicable. It doesn't override MAC and DAC restrictions.\n"
+        "file owner ID must be equal to the user ID, except where CAP_FSETID\n"
+        "is applicable. It doesn't override MAC and DAC restrictions.\n"
     },
     {
         CAP_FSETID,
         "CAP_FSETID",
-        "Overrides the following restrictions that the effective user ID shall\n"
-        "match the file owner ID when setting the S_ISUID and S_ISGID bits on\n"
-        "that file; that the effective group ID (or one of the supplementary\n"
-        "group IDs) shall match the file owner ID when setting the S_ISGID bit\n"
-        "on that file; that the S_ISUID and S_ISGID bits are cleared on\n"
-        "successful return from chown(2) (not implemented).\n"
+        "Overrides the following restrictions that the effective user ID\n"
+        "shall match the file owner ID when setting the S_ISUID and S_ISGID\n"
+        "bits on that file; that the effective group ID (or one of the\n"
+        "supplementary group IDs) shall match the file owner ID when setting\n"
+        "the S_ISGID bit on that file; that the S_ISUID and S_ISGID bits are\n"
+        "cleared on successful return from chown(2) (not implemented).\n"
     },
     {
         CAP_KILL,
         "CAP_KILL",
         "Overrides the restriction that the real or effective user ID of a\n"
-        "process sending a signal must match the real or effective user ID of\n"
-        "the process receiving the signal.\n"
+        "process sending a signal must match the real or effective user ID\n"
+        "of the process receiving the signal.\n"
     },
     {
         CAP_SETGID,
@@ -62,13 +63,15 @@ const struct rws_cap rws_caps[] = {
     {
         CAP_SETPCAP,
         "CAP_SETPCAP",
-        "Without VFS support for capabilities: *   Transfer any capability in\n"
-        "your permitted set to any pid, *   remove any capability in your\n"
-        "permitted set from any pid * With VFS support for capabilities\n"
-        "(neither of above, but) *   Add any capability from current's\n"
-        "capability bounding set *       to the current process' inheritable\n"
-        "set *   Allow taking bits out of capability bounding set *   Allow\n"
-        "modification of the securebits for a process\n"
+        "Without VFS support for capabilities:\n"
+        "  Transfer any capability in your permitted set to any pid,\n"
+        "  remove any capability in your permitted set from any pid\n"
+        "With VFS support for capabilities (neither of above, but)\n"
+        "  Add any capability from current's capability bounding set\n"
+        "      to the current process' inheritable set\n"
+        "  Allow taking bits out of capability bounding set\n"
+        "  Allow modification of the securebits for a process\n"
+        "\n"
     },
     {
         CAP_LINUX_IMMUTABLE,
@@ -93,9 +96,9 @@ const struct rws_cap rws_caps[] = {
         "Allow administration of IP firewall, masquerading and accounting\n"
         "Allow setting debug option on sockets\n"
         "Allow modification of routing tables\n"
-        "Allow setting arbitrary process / process group ownership on sockets\n"
-        "Allow binding to any address for transparent proxying (also via\n"
-        "NET_RAW)\n"
+        "Allow setting arbitrary process / process group ownership on\n"
+        "sockets\n"
+        "Allow binding to any address for transparent proxying (also via NET_RAW)\n"
         "Allow setting TOS (type of service)\n"
         "Allow setting promiscuous mode\n"
         "Allow clearing driver statistics\n"
@@ -108,8 +111,7 @@ const struct rws_cap rws_caps[] = {
         "CAP_NET_RAW",
         "Allow use of RAW sockets\n"
         "Allow use of PACKET sockets\n"
-        "Allow binding to any address for transparent proxying (also via\n"
-        "NET_ADMIN)\n"
+        "Allow binding to any address for transparent proxying (also via NET_ADMIN)\n"
     },
     {
         CAP_IPC_LOCK,
@@ -157,7 +159,6 @@ const struct rws_cap rws_caps[] = {
         "Allow examination and configuration of disk quotas\n"
         "Allow setting the domainname\n"
         "Allow setting the hostname\n"
-        "Allow calling bdflush()\n"
         "Allow mount() and umount(), setting up new smb connection\n"
         "Allow some autofs root ioctls\n"
         "Allow nfsservctl\n"
@@ -174,8 +175,8 @@ const struct rws_cap rws_caps[] = {
         "Allow setting readahead and flushing buffers on block devices\n"
         "Allow setting geometry in floppy driver\n"
         "Allow turning DMA on/off in xd driver\n"
-        "Allow administration of md devices (mostly the above, but some extra\n"
-        "ioctls)\n"
+        "Allow administration of md devices (mostly the above, but some\n"
+        "extra ioctls)\n"
         "Allow tuning the ide driver\n"
         "Allow access to the nvram device\n"
         "Allow administration of apm_bios, serial and bttv (TV) device\n"
@@ -184,10 +185,11 @@ const struct rws_cap rws_caps[] = {
         "Allow DDI debug ioctl on sbpcd driver\n"
         "Allow setting up serial ports\n"
         "Allow sending raw qic-117 commands\n"
-        "Allow enabling/disabling tagged queuing on SCSI controllers and\n"
-        "sending arbitrary SCSI commands\n"
+        "Allow enabling/disabling tagged queuing on SCSI controllers and sending\n"
+        "arbitrary SCSI commands\n"
         "Allow setting encryption key on loopback filesystem\n"
         "Allow setting zone reclaim policy\n"
+        "Allow everything under CAP_BPF and CAP_PERFMON for backward compatibility\n"
     },
     {
         CAP_SYS_BOOT,
@@ -197,12 +199,14 @@ const struct rws_cap rws_caps[] = {
     {
         CAP_SYS_NICE,
         "CAP_SYS_NICE",
-        "Allow raising priority and setting priority on other (different UID)\n"
-        "processes\n"
+        "Allow raising priority and setting priority on other (different\n"
+        "UID) processes\n"
         "Allow use of FIFO and round-robin (realtime) scheduling on own\n"
         "processes and setting the scheduling algorithm used by another\n"
         "process.\n"
         "Allow setting cpu affinity on other processes\n"
+        "Allow setting realtime ioprio class\n"
+        "Allow setting ioprio class on other processes\n"
     },
     {
         CAP_SYS_RESOURCE,
@@ -212,12 +216,13 @@ const struct rws_cap rws_caps[] = {
         "Override reserved space on ext2 filesystem\n"
         "Modify data journaling mode on ext3 filesystem (uses journaling\n"
         "resources)\n"
-        "NOTE: ext2 honors fsuid when checking for resource overrides, so you\n"
-        "can override using fsuid too\n"
+        "NOTE: ext2 honors fsuid when checking for resource overrides, so\n"
+        "you can override using fsuid too\n"
         "Override size restrictions on IPC message queues\n"
         "Allow more than 64hz interrupts from the real-time clock\n"
         "Override max number of consoles on console allocation\n"
         "Override max number of keymaps\n"
+        "Control memory reclaim behavior\n"
     },
     {
         CAP_SYS_TIME,
@@ -255,23 +260,26 @@ const struct rws_cap rws_caps[] = {
     {
         CAP_SETFCAP,
         "CAP_SETFCAP",
-        ""
+        "Set or remove capabilities on files.\n"
+        "Map uid=0 into a child user namespace.\n"
     },
     {
         CAP_MAC_OVERRIDE,
         "CAP_MAC_OVERRIDE",
-        "Override MAC access. The base kernel enforces no MAC policy. An LSM\n"
-        "may enforce a MAC policy, and if it does and it chooses to implement\n"
-        "capability based overrides of that policy, this is the capability it\n"
-        "should use to do so.\n"
+        "Override MAC access.\n"
+        "The base kernel enforces no MAC policy.\n"
+        "An LSM may enforce a MAC policy, and if it does and it chooses\n"
+        "to implement capability based overrides of that policy, this is\n"
+        "the capability it should use to do so.\n"
     },
     {
         CAP_MAC_ADMIN,
         "CAP_MAC_ADMIN",
-        "Allow MAC configuration or state changes. The base kernel requires no\n"
-        "MAC configuration. An LSM may enforce a MAC policy, and if it does and\n"
-        "it chooses to implement capability based checks on modifications to\n"
-        "that policy or the data required to maintain it, this is the\n"
+        "Allow MAC configuration or state changes.\n"
+        "The base kernel requires no MAC configuration.\n"
+        "An LSM may enforce a MAC policy, and if it does and it chooses\n"
+        "to implement capability based checks on modifications to that\n"
+        "policy or the data required to maintain it, this is the\n"
         "capability it should use to do so.\n"
     },
     {
@@ -294,6 +302,52 @@ const struct rws_cap rws_caps[] = {
         "CAP_AUDIT_READ",
         "Allow reading the audit log via multicast netlink socket\n"
     },
+    {
+        CAP_PERFMON,
+        "CAP_PERFMON",
+        "Allow system performance and observability privileged operations\n"
+        "using perf_events, i915_perf and other kernel subsystems\n"
+        "\n"
+    },
+    {
+        CAP_BPF,
+        "CAP_BPF",
+        "CAP_BPF allows the following BPF operations:\n"
+        "- Creating all types of BPF maps\n"
+        "- Advanced verifier features\n"
+        "  - Indirect variable access\n"
+        "  - Bounded loops\n"
+        "  - BPF to BPF function calls\n"
+        "  - Scalar precision tracking\n"
+        "  - Larger complexity limits\n"
+        "  - Dead code elimination\n"
+        "  - And potentially other features\n"
+        "- Loading BPF Type Format (BTF) data\n"
+        "- Retrieve xlated and JITed code of BPF programs\n"
+        "- Use bpf_spin_lock() helper\n"
+        "\n"
+        "CAP_PERFMON relaxes the verifier checks further:\n"
+        "- BPF progs can use of pointer-to-integer conversions\n"
+        "- speculation attack hardening measures are bypassed\n"
+        "- bpf_probe_read to read arbitrary kernel memory is allowed\n"
+        "- bpf_trace_printk to print kernel memory is allowed\n"
+        "\n"
+        "CAP_SYS_ADMIN is required to use bpf_probe_write_user.\n"
+        "\n"
+        "CAP_SYS_ADMIN is required to iterate system wide loaded\n"
+        "programs, maps, links, BTFs and convert their IDs to file descriptors.\n"
+        "\n"
+        "CAP_PERFMON and CAP_BPF are required to load tracing programs.\n"
+        "CAP_NET_ADMIN and CAP_BPF are required to load networking programs.\n"
+        "\n"
+    },
+    {
+        CAP_CHECKPOINT_RESTORE,
+        "CAP_CHECKPOINT_RESTORE",
+        "Allow checkpoint/restore related operations\n"
+        "Allow PID selection during clone3()\n"
+        "Allow writing to ns_last_pid\n"
+    },
 };
 
-unsigned int rws_ncaps = 38;
+unsigned int rws_ncaps = 41;
