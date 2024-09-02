@@ -207,7 +207,7 @@ int main(int argc, char **argv)
     const struct rws_cap *c;
     cap_value_t cv;
 
-    while((opt = getopt(argc, argv, "lu:c:s:")) != -1) {
+    while((opt = getopt(argc, argv, "+lu:c:s:")) != -1) {
         switch(opt) {
         case 'l':
             list_caps();
