@@ -191,11 +191,21 @@ void rws_getuid(char *user)
 }
 
 
+static void add_cap(cap_value_t c)
+{
+    caps = realloc(caps, (ncaps + 1) * sizeof(*caps));
+    if(caps == NULL)
+        errx(EXIT_FAILURE, "Out of memory");
+    printf("%s\n", cap_to_name(c));
+    caps[ncaps++] = c;
+}
+
 int main(int argc, char **argv)
 {
     int opt;
     struct group *group;
     const struct rws_cap *c;
+    cap_value_t cv;
 
     while((opt = getopt(argc, argv, "lu:c:s:")) != -1) {
         switch(opt) {
@@ -212,13 +222,14 @@ int main(int argc, char **argv)
             rws_getgid(optarg);
             break;
         case 'c':
-            c = find_cap_by_name(optarg);
-            if(c == NULL)
-                exit(EXIT_FAILURE);
-            caps = realloc(caps, (ncaps + 1) * sizeof(*caps));
-            if(caps == NULL)
-                errx(EXIT_FAILURE, "Out of memory");
-            caps[ncaps++] = c->value;
+            if(cap_from_name(optarg, &cv) == 0) {
+                add_cap(cv);
+            } else {
+                c = find_cap_by_name(optarg);
+                if(c == NULL)
+                    exit(EXIT_FAILURE);
+                add_cap(c->value);
+            }
             break;
         default:
             fprintf(stderr, "Usage: rws -u user -c cap command args...\n");
