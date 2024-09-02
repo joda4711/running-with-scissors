@@ -1,0 +1,71 @@
+.Dd Dec  28, 2020
+.Dt RWS 8
+.Sh NAME
+.Nm rws
+.Nd Linux capability execution tool
+.Sh SYNOPSIS
+.Nm
+.Bk -words
+.Fl l | Fl s Ar string
+.Ek
+.Nm
+.Bk -words
+.Op Fl u Ar user
+.Op Fl g Ar group
+.Fl c Ar capability
+.Op Fl c Ar capability ...
+.Ar command
+.Op Ar args ...
+.Ek
+.Sh DESCRIPTION
+The
+.Nm
+tool is used to execute programs with extra capabilities but without full root access.
+.Pp
+Supported options:
+.Bl -tag -width Ds
+.It Fl l
+List understood capability names.
+.It Fl s Ar string
+List understood capability names, filtered by
+.Ar string
+string.
+.It Fl c Ar capability
+Capability to add to the executed process. The capability can be given as a string understood by
+.Xr cap_from_name 3 ,
+or as a sufficiently unique substring of a capability name.
+.It Fl u Ar user[:group]
+User id to execute process as. This can be specified as a username or
+a numeric uid, optionally followed by a colon and a group name or
+group id. If no group is specified, the group id of the specified user
+is used.
+.Pp
+If no user is specified and the real and effective user is different,
+the real user id is used. If this is not the case, then if the
+.Ev SUDO_USER
+environment variable is set, then that user will be used.
+
+The group can also be specified with the
+.Fl g
+option. 
+
+.It Fl g Ar group
+Group to execute as.
+.El
+
+
+.Pp
+
+
+.\".Sh ENVIRONMENT
+.\".Sh FILES
+.\".Sh EXAMPLES
+.\".Sh DIAGNOSTICS
+.Sh SEE ALSO
+.Xr capsh 1 ,
+.Xr cap_from_name 3 ,
+.Xr sudo 8
+.\".Sh STANDARDS
+.\".Sh HISTORY
+.\".Sh AUTHORS
+.\".Sh BUGS
