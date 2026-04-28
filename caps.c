@@ -190,6 +190,7 @@ const struct rws_cap rws_caps[] = {
         "Allow setting encryption key on loopback filesystem\n"
         "Allow setting zone reclaim policy\n"
         "Allow everything under CAP_BPF and CAP_PERFMON for backward compatibility\n"
+        "Allow setting hardware protection emergency action\n"
     },
     {
         CAP_SYS_BOOT,
