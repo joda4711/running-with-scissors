@@ -53,13 +53,20 @@ option.
 Group to execute as.
 .El
 
-
 .Pp
+
+Note that you need to run this tool as root to be able to change the
+capabilties.
 
 
 .\".Sh ENVIRONMENT
 .\".Sh FILES
-.\".Sh EXAMPLES
+.Sh EXAMPLES
+
+Find files in root's home directory as normal user:
+
+.Dl sudo rws -c dac_read_search -- find /root
+
 .\".Sh DIAGNOSTICS
 .Sh SEE ALSO
 .Xr capsh 1 ,
